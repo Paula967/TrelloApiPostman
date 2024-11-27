@@ -1,0 +1,1041 @@
+{
+	"info": {
+		"_postman_id": "2b6a49c2-24d2-4eef-bb83-88884ccec4a5",
+		"name": "Trello",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38468433"
+	},
+	"item": [
+		{
+			"name": "Board",
+			"item": [
+				{
+					"name": "Create Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"ID_Board\",jsonData.id);\r",
+									"pm.environment.set(\"Board_Name\",jsonData.name);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/boards/?name=API Testing&key={{Key}}&token={{token}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "API Testing"
+								},
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									" var jsonData = pm.response.json();\r",
+									"pm.test(\"Validate Board ID\", function () {\r",
+									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"ID_Board\"));\r",
+									"});\r",
+									"pm.test(\"Validate Board Name\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(pm.environment.get(\"Board_Name\"));\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/boards/{{ID_Board}}?key={{Key}}&token={{token}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								"{{ID_Board}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"Board_Name\", jsonData.name);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/boards/{{ID_Board}}?key={{Key}}&token={{token}}&name=PaulaBoard",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								"{{ID_Board}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "name",
+									"value": "PaulaBoard"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List",
+			"item": [
+				{
+					"name": "Create a new list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"var JsonData=pm.response.json();\r",
+									"pm.environment.set(\"ID_List\", JsonData.id);\r",
+									"pm.environment.set(\"Name_List\", JsonData.name);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/lists/?name=new_list&key={{Key}}&token={{token}}&idBoard={{ID_Board}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"lists",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "new_list"
+								},
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "idBoard",
+									"value": "{{ID_Board}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.test(\"Validate ID List\", function () {\r",
+									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"ID_List\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate Name List\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(pm.environment.get(\"Name_List\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate ID Board\", function () {\r",
+									"    pm.expect(jsonData.idBoard).to.equal(pm.environment.get(\"ID_Board\"));\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/lists/{{ID_List}}?key={{Key}}&token={{token}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"lists",
+								"{{ID_List}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"var JsonData=pm.response.json();\r",
+									"pm.environment.set(\"Name_List\", JsonData.name);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/lists/{{ID_List}}?key={{Key}}&token={{token}}&idBoard={{ID_Board}}&name=Old_List",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"lists",
+								"{{ID_List}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "idBoard",
+									"value": "{{ID_Board}}"
+								},
+								{
+									"key": "name",
+									"value": "Old_List"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Lists on a board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=pm.response.json();\r",
+									"pm.test(\"Validate That all Lists on the same Board\", function () {\r",
+									"    pm.expect(jsonData[0].idBoard).to.eql(pm.environment.get(\"ID_Board\"));\r",
+									"    pm.expect(jsonData[1].idBoard).to.equal(pm.environment.get(\"ID_Board\"));\r",
+									"    pm.expect(jsonData[2].idBoard).to.equal(pm.environment.get(\"ID_Board\"));\r",
+									"    pm.expect(jsonData[3].idBoard).to.equal(pm.environment.get(\"ID_Board\"));\r",
+									"});\r",
+									"pm.test(\"Validate That The List ID \", function () {\r",
+									"    pm.expect(jsonData[0].id).to.eql(pm.environment.get(\"ID_List\"));\r",
+									"});\r",
+									"pm.test(\"Validate That The List Name\", function () {\r",
+									"    pm.expect(jsonData[0].name).to.eql(pm.environment.get(\"Name_List\"));\r",
+									"});\r",
+									"pm.test(\"Validate That The To Do List exists\", function () {\r",
+									"    pm.expect(jsonData[1].name).to.eql(\"To Do\");\r",
+									"});\r",
+									"pm.test(\"Validate That The Doing List exists\", function () {\r",
+									"    pm.expect(jsonData[2].name).to.eql(\"Doing\");\r",
+									"});\r",
+									"pm.test(\"Validate That The Done List exists\", function () {\r",
+									"    pm.expect(jsonData[3].name).to.eql(\"Done\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_URL}}/1/boards/{{ID_Board}}/lists?key={{Key}}&token={{token}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								"{{ID_Board}}",
+								"lists"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Card",
+			"item": [
+				{
+					"name": "Create a New Card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var JsonData = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"ID_card\", JsonData.id);\r",
+									"pm.environment.set(\"Name_card\", JsonData.name);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/cards/?name=new_card&key={{Key}}&token={{token}}&idList={{ID_List}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "new_card"
+								},
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "idList",
+									"value": "{{ID_List}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.test(\"Validate ID Card\", function () {\r",
+									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"ID_card\"));\r",
+									"});\r",
+									"pm.test(\"Validate Name Card\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(pm.environment.get(\"Name_card\"));  \r",
+									"});\r",
+									"pm.test(\"Validate ID List\", function () {\r",
+									"    pm.expect(jsonData.idList).to.equal(pm.environment.get(\"ID_List\"));\r",
+									"});\r",
+									"pm.test(\"Validate IdBoard\", function () {\r",
+									"    pm.expect(jsonData.idBoard).to.eql(pm.environment.get(\"ID_Board\"));\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/cards/{{ID_card}}?key={{Key}}&token={{token}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								"{{ID_card}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"Name_card\",jsonData.name)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/cards/{{ID_card}}?key={{Key}}&token={{token}}&name=Old_Card&idList={{ID_List}}&idBoard={{ID_Board}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								"{{ID_card}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "name",
+									"value": "Old_Card"
+								},
+								{
+									"key": "idList",
+									"value": "{{ID_List}}"
+								},
+								{
+									"key": "idBoard",
+									"value": "{{ID_Board}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Cards on a List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=pm.response.json();\r",
+									"pm.test(\"Validate That The Card is Created Successfully\", function () {\r",
+									"    pm.expect(jsonData[0].id).to.eql(pm.environment.get(\"ID_card\"));\r",
+									"});\r",
+									"pm.test(\"Validate Name Card\", function () {\r",
+									"    pm.expect(jsonData[0].name).to.eql(pm.environment.get(\"Name_card\"));  \r",
+									"});\r",
+									"pm.test(\"Validate ID List\", function () {\r",
+									"    pm.expect(jsonData[0].idList).to.equal(pm.environment.get(\"ID_List\"));\r",
+									"});\r",
+									"pm.test(\"Validate IdBoard\", function () {\r",
+									"    pm.expect(jsonData[0].idBoard).to.eql(pm.environment.get(\"ID_Board\"));\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_URL}}/1/lists/{{ID_List}}/cards?key={{Key}}&token={{token}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"lists",
+								"{{ID_List}}",
+								"cards"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CheckList",
+			"item": [
+				{
+					"name": "Create a CheckList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"var JsonData=pm.response.json();\r",
+									"pm.environment.set(\"ID_CheckList\", JsonData.id);\r",
+									"pm.environment.set(\"Name_CheckList\", JsonData.name);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_URL}}/1/checklists/?idCard={{ID_card}}&key={{Key}}&token={{token}}&name=First_CheckList",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"checklists",
+								""
+							],
+							"query": [
+								{
+									"key": "idCard",
+									"value": "{{ID_card}}"
+								},
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "name",
+									"value": "First_CheckList"
+								},
+								{
+									"key": "idCard",
+									"value": "{{ID_card}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a CheckList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.test(\"Validate ID CheckList\", function () {\r",
+									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"ID_CheckList\"));\r",
+									"});\r",
+									"pm.test(\"Validate Name CheckList\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(pm.environment.get(\"Name_CheckList\"));\r",
+									"});\r",
+									"pm.test(\"Validate ID Card\", function () {\r",
+									"    pm.expect(jsonData.idCard).to.equal(pm.environment.get(\"ID_card\"));\r",
+									"});\r",
+									"pm.test(\"Validate ID Board\", function () {\r",
+									"    pm.expect(jsonData.idBoard).to.equal(pm.environment.get(\"ID_Board\"));\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/checklists/{{ID_CheckList}}?key={{Key}}&token={{token}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"checklists",
+								"{{ID_CheckList}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Checklist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"var JsonData=pm.response.json();\r",
+									"pm.environment.set(\"Name_CheckList\", JsonData.name);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/checklists/{{ID_CheckList}}?key={{Key}}&token={{token}}&name=Second_CheckList",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"checklists",
+								"{{ID_CheckList}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "name",
+									"value": "Second_CheckList"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all checklist on a card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=pm.response.json();\r",
+									"pm.test(\"Validate The CheckList ID\", function () {\r",
+									"    pm.expect(jsonData[0].id).to.eql(pm.environment.get(\"ID_CheckList\"));\r",
+									"});\r",
+									"pm.test(\"Validate Name CheckList\", function () {\r",
+									"    pm.expect(jsonData[0].name).to.eql(pm.environment.get(\"Name_CheckList\"));  \r",
+									"});\r",
+									"pm.test(\"Validate that CheckList is Created on the same Card\", function () {\r",
+									"    pm.expect(jsonData[0].idCard).to.equal(pm.environment.get(\"ID_card\"));\r",
+									"});\r",
+									"pm.test(\"Validate that CheckList is Created on the same Board\", function () {\r",
+									"    pm.expect(jsonData[0].idBoard).to.eql(pm.environment.get(\"ID_Board\"));\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/cards/{{ID_card}}/checklists?key={{Key}}&token={{token}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								"{{ID_card}}",
+								"checklists"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"item": [
+				{
+					"name": "Delete a CheckList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/checklists/{{ID_CheckList}}?key={{Key}}&token={{token}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"checklists",
+								"{{ID_CheckList}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Card",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/cards/{{ID_card}}?key={{Key}}&token={{token}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								"{{ID_card}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a List",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_URL}}/1/lists/{{ID_List}}/closed?key={{Key}}&token={{token}}&value=true",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"lists",
+								"{{ID_List}}",
+								"closed"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "value",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/1/boards/{{ID_Board}}?key={{Key}}&token={{token}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								"{{ID_Board}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"\r",
+					"pm.test(\"Status code is 200\", function () {\r",
+					"    pm.response.to.have.status(200);\r",
+					"});\r",
+					"\r",
+					"pm.test(\"Response time is less than 3000ms\", function () {\r",
+					"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+					"});"
+				]
+			}
+		}
+	]
+}

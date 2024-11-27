@@ -1,0 +1,105 @@
+{
+	"id": "f3fe0544-f69d-4d59-8f47-4125c411108c",
+	"name": "Trello",
+	"values": [
+		{
+			"key": "Base_URL",
+			"value": "https://api.trello.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Key",
+			"value": "8ba64317e64c45a0fdd01029af42fee8",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "ATTA6b9eb13ce99f32848f63c778397b60639fd93a22c962aab8a062248016386a9cCDEF058F",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "",
+			"value": "",
+			"type": "any",
+			"enabled": false
+		},
+		{
+			"key": "",
+			"value": "",
+			"type": "any",
+			"enabled": false
+		},
+		{
+			"key": "ID_Board",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "ID_List",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Board_Name",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Name_List",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "ID_card",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Name_card",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "ID_CheckList",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "variable_key",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Name_CheckList",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "ID_CheckItem",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Name_CheckItem",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-11-27T15:34:29.908Z",
+	"_postman_exported_using": "Postman/11.21.0"
+}
